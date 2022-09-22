@@ -36,7 +36,7 @@ conda deactivate RDDL
 1. Download the codes from the following link and unzip the file. Please skip it if you have done this step.
 
 ```
-wget https://cobishss0.im.nuk.edu.tw/RDDL/RDDL_Tool.tar.gz
+wget https://cobis.bme.ncku.edu.tw/RDDL/RDDL_Tool.tar.gz
 ```
 
 2. Unzip the file.
@@ -255,7 +255,7 @@ The example is demostrated by the Skin lession dataset used in the paper:
 1. Download the processed datasets from the following link.
 
 ```
-wget https://cobishss0.im.nuk.edu.tw/RDDL/RDDL_Dataset.tar.gz
+wget https://cobis.bme.ncku.edu.tw/RDDL/RDDL_DEMO.tar.gz
 ```
 
 2. Unzip the file.
@@ -317,8 +317,6 @@ Example: The learning curves of the OS(1:1) balancing scheme:
 In this example, we have already trained these models for users to test:
 
 ```
-mkdir MEL-ALEX/RDDL_outputs
-
 cp RDDL_DEMO/MEL-ALEX/RDDL_outputs/models/ MEL-ALEX/RDDL_outputs/ -r
 ```
 
@@ -350,8 +348,12 @@ Step IV sample outputs:
 The final ensemble model can be used to predict newly provided input samples using the following command:
 
 ```
+mv RDDL_DEMO/DEMO_prediction MEL-ALEX/
+
 python predict.py -name MEL-ALEX -i MEL-ALEX/DEMO_prediction -o MEL-ALEX/predict_results.csv
 ```
+
+In this example we place the samples that are to be predicted in the ```DEMO_prediction``` folder. And the output prediction probabilities will be saved in the ```MEL-ALEX/predict_results.csv``` file. 
 
 
 
