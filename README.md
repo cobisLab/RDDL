@@ -36,13 +36,13 @@ conda deactivate RDDL
 1. Download the codes from the following link and unzip the file. Please skip it if you have done this step.
 
 ```
-wget https://cobis.bme.ncku.edu.tw/RDDL/RDDL_Tool.tar.gz
+wget https://cobis-fs.bme.ncku.edu.tw/RDDL/RDDL.tar.gz
 ```
 
 2. Unzip the file.
 
 ```
-tar -zxvf RDDL_Tool.tar.gz
+tar -zxvf RDDL.tar.gz
 ```
 
 3. Change the working directory.
@@ -255,7 +255,7 @@ The example is demostrated by the Skin lession dataset used in the paper:
 1. Download the processed datasets from the following link.
 
 ```
-wget https://cobis.bme.ncku.edu.tw/RDDL/RDDL_DEMO.tar.gz
+wget https://cobis-fs.bme.ncku.edu.tw/RDDL/RDDL_DEMO.tar.gz
 ```
 
 2. Unzip the file.
