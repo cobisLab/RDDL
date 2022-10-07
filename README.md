@@ -48,7 +48,7 @@ tar -zxvf RDDL.tar.gz
 3. Change the working directory.
 
 ```
-cd RDDL_Tool
+cd RDDL
 ```
 
 3. If this is the first time you use RDDL, run the following command to install necessary packages. 
@@ -268,7 +268,7 @@ tar -zxvf RDDL_DEMO.tar.gz
 
 ```
 mkdir MEL-ALEX
-cp RDDL_DEMO/MEL-ALEX/USER* MEL-ALEX -rf
+cp RDDL_DEMO/USER* MEL-ALEX -rf
 ```
 
 If we use the example inputs with the example commands in order:
