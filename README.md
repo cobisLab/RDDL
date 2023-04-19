@@ -1,6 +1,6 @@
 # Related paper: RDDL
 
-Tzu-Hsien Yang*, Zhan-Yi Liao, Yu-Huai Yu, and Min Hsia, "A systematic ensemble pipeline for enhancing the identification of lowly prevalent diseases using deep learning". (Submitting)
+Tzu-Hsien Yang*, Zhan-Yi Liao, Yu-Huai Yu, and Min Hsia, "RDDL: a systematic ensemble pipeline tool that streamlines balancing training schemes to reduce the effects of data imbalance in rare-disease-related deep-learning applications". (revised)
 
 ![](Figures/Figure1.jpg)
 
