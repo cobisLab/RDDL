@@ -310,7 +310,7 @@ We have already chosen the suitable hyperparameters for different balancing meth
 For example, we can perform the simple oversampling method (OS 1-2) using the following command: 
 
 ```
-python run_train.py -name MEL-ALEX -m OS1-2
+python run_train.py -name MEL-ALEX -m OS1-2 -nor 1
 ```
 
 _Step III sample outputs:_ The F1 learning curves of the training process will be provided. The ROC and PR curves of the balancing model are also provided. 
