@@ -1,4 +1,4 @@
-##Use SHAP to interpret models 
+## Use SHAP to interpret models 
 
 To interpret the governing rules for the trained models, we can use SHAP to explain the model's predictions.
 
