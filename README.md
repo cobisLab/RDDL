@@ -310,9 +310,9 @@ python run_train.py -name MEL-ALEX -m OS1-1
 
 _Step III sample outputs:_ The F1 learning curves of the training process will be provided. The ROC and PR curves of the balancing model are also provided. 
 
-Example: The learning curves of the OS(1:1) balancing scheme:
+Example: The learning curves of the OS(1:2) balancing scheme:
 
-![](Figures/OS1-1.png)
+![](Figures/OS1-2.png)
 
 In this example, we have already trained these models for users to test:
 
