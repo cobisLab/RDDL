@@ -341,7 +341,7 @@ Step IV sample outputs:
 
 ![ROC](Figures/MEL-ALEX_ensembleValidation_ROC.png)
 ![PRC](Figures/MEL-ALEX_ensembleValidation_PRC.png)
-![Metrics](Figures/ensemble_validation.png)
+![Metrics](Figures/Ensemble_validation.png)
 
 (3) The final test evaulation result of the ensemble model:
 
