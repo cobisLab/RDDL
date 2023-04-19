@@ -1,5 +1,6 @@
-# Related paper: RDDL
+# RDDL (Rare Disease Deep Learning pipeline)
 
+## Related paper: 
 Tzu-Hsien Yang*, Zhan-Yi Liao, Yu-Huai Yu, and Min Hsia, "RDDL: a systematic ensemble pipeline tool that streamlines balancing training schemes to reduce the effects of data imbalance in rare-disease-related deep-learning applications". (revised)
 
 ![](Figures/Figure1.jpg)
@@ -26,7 +27,7 @@ conda create -n "RDDL" python=3.8.13
 conda activate RDDL
 ```
 
-4. If you want to leave the YTLR Conda envrionment, please type:
+4. If you want to leave the RDDL Conda envrionment, please type:
 
 ```
 conda deactivate RDDL
@@ -109,7 +110,7 @@ python split_data.py -name <TASK_NAME> [-e <size of ensemble dataset>] [-t <size
 **Notice**
 If you want to use the sample-specific weighting balancing scheme, you need to provide the sample weights in the ```sample_weight.csv``` file. 
 
-The ```sample_weights.csv``` must be saved in the directory path specified by -p and -n. Each row should contain the sample name and its weight. These weights will be automatically set to 1 if the file is not provided.
+The ```sample_weights.csv``` must be saved in the directory path specified by -p and -n. Each row should contain the sample name and its weight. These weights will be automatically set to 1 if the file is not provided.
 
 Example formats:
 
@@ -130,7 +131,7 @@ Example formats:
 We suggest users systemtically run the all following balancing methods to achieve the best ensemble results.
 
 ```
-python run_train.py -name <TASK_NAME> -m <balancing method> [-g <gpu id>] [-v <verbose mode>]
+python run_train.py -name <TASK_NAME> -m <balancing method> -nor <normalization option> [-g <gpu id>] [-v <verbose mode>]
 ```
 
 > Required arguments:
@@ -141,6 +142,7 @@ python run_train.py -name <TASK_NAME> -m <balancing method> [-g <gpu id>] [-v <v
 
 >>* "OS1-1": Oversample (positive:negative = 1:1) 
 >>* "OS1-2": Oversample (positive:negative = 1:2)
+>>* "DA": Oversample using data augmentation (only valid for images)
 >>* "US1-1": Undersample (positive:negative = 1:1)
 >>* "US1-2": Undersample (positive:negative = 1:2)
 >>* "FL-gamma-1": Focal loss (gamma = 1)
@@ -149,6 +151,8 @@ python run_train.py -name <TASK_NAME> -m <balancing method> [-g <gpu id>] [-v <v
 >>* "BB": Balance batch training
 >>* "CW": Class weight
 >>* "SW": Sample weight
+
+>* -nor: the specified normalization option for this balancing scheme. (0 --> no normalization, 1 --> image normalization, 2 --> z-score normalization)
 
 > Optional arguments:
 
@@ -165,6 +169,7 @@ Before running the balancing methods, users are required to set the hyperparamet
            /USER_neg/
            /USER_hyperparameters/ - OS1-1.json 
                                   - OS1-2.json 
+                                  - DA.json
                                   - US1-1.json 
                                   - US1-2.json 
                                   - FL-gamma-1.json 
@@ -182,14 +187,14 @@ The format in a hyperparameter json file:
 
 >* "name": ```str```. Defaults: "RDDL". Name of this deep learning project.
 >* "batch_size": ```int```. Default: 64. The number of samples used in a single batch.
->* "dropout_rate": ```float``` (0 ~ 1). The regularization that avoids model overfitting. Default: 0.1.
+>* "dropout_rate": ```float``` (0 ~ 1). The regularization that avoids model overfitting. Default: 0.1. Users need use the ```dropout_rate``` variable when building the dropout layers of their models.
 >* "epochs": ```int```. Defaults: 40. An epoch represents a full iteration over the entire training set.
 >* "initial_lr": ```float```. The initial learning rate of the learning rate exponential decay stage. Learning rates controls the optimization speed. 
->* "decay_rate": ```float```. The learning decay ratio used in the learning rate exponential decay stage.
+>* "decay_rate": ```float```. The learning decay ratio used in the learning rate exponential decay stage. The learning rate will start exponentially decay after running 1/5 of toal epochs. 
 >* "bottom_lr": ```float```. The minimum learning rate used in the training process.
 >* "random_seed": ```int```. Users can specifiy the random seed used in the sampling process if they want to repeat the sampling results in the future. Default: a random chosen number. 
 
-The learning curves can be found in the ```RDDL_outputs/learning_curves/``` folder:
+The resulting learning curves can be found in the ```RDDL_outputs/learning_curves/``` folder:
 
 ```
 <TASK_NAME>/USER_pos/
@@ -215,7 +220,7 @@ python run_ensemble.py -name <case name> [-g <gpu id>] [-v <verbose mode>]
 
 >* -v ```int```. Verbose.
 
-The evaluation results can be found in the ```RDDL_outputs/plots/``` folder.
+The evaluation results on the validation set and the test restuls on the test set can be found in the ```RDDL_outputs/plots/``` folder.
 
 ```
 <TASK_NAME>/USER_pos/
@@ -302,10 +307,10 @@ We have already implemented the Alexnet as the base model in this example.
 ### Step III
 We have already chosen the suitable hyperparameters for different balancing methods for this example. 
 
-For example, we can perform the simple oversampling method (OS 1-1) using the following command: 
+For example, we can perform the simple oversampling method (OS 1-2) using the following command: 
 
 ```
-python run_train.py -name MEL-ALEX -m OS1-1
+python run_train.py -name MEL-ALEX -m OS1-2
 ```
 
 _Step III sample outputs:_ The F1 learning curves of the training process will be provided. The ROC and PR curves of the balancing model are also provided. 
@@ -338,11 +343,11 @@ Step IV sample outputs:
 ![PRC](Figures/MEL-ALEX_ensembleValidation_PRC.png)
 ![Metrics](Figures/ensemble_validation.png)
 
-(3) The final test evaulation result of the ensemble model:
+(3) The final test evaulation result of the ensemble model:
 
 ![ROC](Figures/test_ROC.png)
 ![PRC](Figures/test_PRC.png)
-![Metrics](Figures/test.png)
+![Metrics](Figures/testResults.png)
 
 ### Prediction Step
 The final ensemble model can be used to predict newly provided input samples using the following command:
