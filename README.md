@@ -30,7 +30,7 @@ conda activate RDDL
 4. If you want to leave the RDDL Conda envrionment, please type:
 
 ```
-conda deactivate RDDL
+conda deactivate
 ```
 
 ## **Steps to Use RDDL**
@@ -323,7 +323,11 @@ In this example, we have already trained these models for users to test:
 
 ```
 cp RDDL_DEMO/MEL-ALEX/RDDL_outputs/models/ MEL-ALEX/RDDL_outputs/ -r
+
+cp RDDL_DEMO/MEL-ALEX/RDDL_splitting_info/ MEL-ALEX/ -r
 ```
+
+Notice that you have to also copy the data splitting condition for these models to avoid data snooping.
 
 **YOU HAVE TO TRAIN THE SELECTED BALACNING MODELS IN REAL APPLICATIONS!!!**
 
